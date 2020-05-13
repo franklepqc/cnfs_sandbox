@@ -14,5 +14,26 @@
         </table>
 
         <!-- Remplir la table! -->
+
+        <script type="text/javascript">
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(result => {
+                    if (result.ok === true) {
+                        const tableBody = document.getElementById('tableBody');
+
+                        result.json().then(arrayOfUsers =>
+                        {
+                            arrayOfUsers.forEach(u => {
+                                const row = tableBody.insertRow();
+                                const idColumn = row.insertCell();
+                                const nameColumn = row.insertCell();
+                                
+                                idColumn.innerText = u.id.toString();
+                                nameColumn.innerText = u.name;
+                            });
+                        });                            
+                    }
+                });
+        </script>
     </body>
 </html>
